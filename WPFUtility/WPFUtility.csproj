@@ -41,13 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Buttons\ButtonViewModel.cs" />
-    <Compile Include="Buttons\IButtonViewModel.cs" />
-    <Compile Include="Buttons\SelectableButtonViewModel.cs" />
-    <Compile Include="Buttons\SelectableClosableButtonViewModel.cs" />
-    <Compile Include="Buttons\SelectableClosableUniqueButtonViewModel.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="ISelectableViewModel.cs" />
     <Compile Include="IViewModelBase.cs" />
     <Compile Include="MyProperties\ConditionalNotifyingProperty.cs" />
     <Compile Include="MyProperties\NotifyingProperty.cs" />

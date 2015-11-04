@@ -44,11 +44,9 @@
     <Compile Include="ColoredConsole.cs" />
     <Compile Include="DataStructures\Option.cs" />
     <Compile Include="DataStructures\Union.cs" />
-    <Compile Include="DataStructures\Wrap.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Singleton.cs" />
     <Compile Include="UniqueFileNameGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
