@@ -48,6 +48,10 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="IButtonViewModel.cs" />
     <Compile Include="IViewModelBase.cs" />
+    <Compile Include="MessageView\MessageView.xaml.cs">
+      <DependentUpon>MessageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageView\MessageViewModel.cs" />
     <Compile Include="MyProperties\ConditionalNotifyingProperty.cs" />
     <Compile Include="MyProperties\NotifyingProperty.cs" />
     <Compile Include="MyProperties\NotifyingPropertyWithChangedAction.cs" />
@@ -67,6 +71,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="HostWithDialogButtonsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageView\MessageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

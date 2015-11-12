@@ -17,6 +17,10 @@ namespace WPFUtility {
             return window.ShowDialog();
         }
 
+        public static void Popup(string message) {
+            CreateAndShowModal(x => new MessageViewModel(message), false);
+        }
+
         private static void SetupWindow(VMHostWindowView window, VMHostWindowViewModel content, bool resizeable) {
             window.ShowInTaskbar = false;
             window.Owner = Application.Current.MainWindow;

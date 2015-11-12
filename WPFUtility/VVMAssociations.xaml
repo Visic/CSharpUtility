@@ -4,4 +4,8 @@
     <DataTemplate DataType="{x:Type local:HostWithDialogButtonsViewModel}">
         <local:HostWithDialogButtonsView />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:MessageViewModel}">
+        <local:MessageView />
+    </DataTemplate>
 </ResourceDictionary>
