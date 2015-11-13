@@ -28,23 +28,23 @@ namespace Utility_Tests
     {
         static void Main(string[] args)
         {
+            PrintType(Option.New<object>());
+            PrintType(Option.New(""));
+
+            //Option<object> o = null;
+            //Console.WriteLine(o is Some<object>);
+            //PrintType(o);
 
             Console.ReadKey();
+        }
+
+        static void PrintType<T1, T2>(Union<T1, T2> u) {
+            u.Match(x => Console.WriteLine("T1"), x => Console.WriteLine("T2"));
         }
 
         static Union<T, Base> Test2<T>(Union<T, Base> val)
         {
             return val;
-        }
-
-        static Union<T, Base> Test1<T>(T val)
-        {
-            return Union<T, Base>.Create(val);
-        }
-
-        static Union<T, Base> Test1<T>(Base val)
-        {
-            return Union<T, Base>.Create(val);
         }
 
         static void Test(Action<object> act)

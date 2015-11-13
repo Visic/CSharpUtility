@@ -1,38 +1,47 @@
 ﻿using System;
 
 namespace Utility {
-    public struct Option<T> {
-        public Option(T value)
-            : this() {
-            Value = value;
+    public static class Option {
+        public static Option<T> New<T>() {
+            return new Option<T>();
         }
 
-        public bool IsSome { get; private set; }
-        public bool IsNone { get { return !IsSome; } }
-
-        T _value;
-        public T Value {
-            get {
-                if(IsNone) throw new InvalidOperationException("Value is not defined on None.");
-                return _value;
-            }
-
-            private set {
-                _value = value;
-                IsSome = true;
-            }
+        public static Option<T> New<T>(T value) {
+            return new Option<T>(value);
         }
+    }
 
+    public class Option<T> : Union<Some<T>, None> {
+        internal Option(T value) : base(new Some<T>(value)) { }
+        internal Option() : base(new None()) { }
+        
         public Option<RT> Apply<RT>(Func<T, RT> func) {
-            return Apply(x => new Option<RT>(func(x)));
+            return Match<Option<RT>>(
+                x => func(x),
+                x => x
+            );
         }
 
         public Option<RT> Apply<RT>(Func<T, Option<RT>> func) {
-            return IsSome ? func(Value) : new Option<RT>();
+            return Match<Option<RT>>(
+                x => func(x),
+                x => x
+            );
         }
 
         public void Apply(Action<T> action) {
-            if(IsSome) action(Value);
+            Match(
+                x => action(x),
+                x => { }
+            );
+        }
+
+        public static implicit operator Option<T>(Some<T> someT) {
+            return new Option<T>(someT);
+        }
+
+        public static implicit operator Option<T>(None none) {
+            return new Option<T>();
         }
 
         public static implicit operator Option<T>(T val) {
