@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Utility;
 
-namespace Utility_Tests
-{
+namespace Utility_Tests {
     public class Base {
         public string DoSomethingCommon() {
             Console.WriteLine("Did something common!");
@@ -24,12 +24,10 @@ namespace Utility_Tests
         public string UID = Guid.NewGuid().ToString();
     }
 
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            PrintType(Option.New<object>());
-            PrintType(Option.New(""));
+    class Program {
+        static void Main(string[] args) {
+            //PrintType(Option.New<object>());
+            //PrintType(Option.New(""));
 
             //Option<object> o = null;
             //Console.WriteLine(o is Some<object>);
@@ -42,23 +40,19 @@ namespace Utility_Tests
             u.Match(x => Console.WriteLine("T1"), x => Console.WriteLine("T2"));
         }
 
-        static Union<T, Base> Test2<T>(Union<T, Base> val)
-        {
+        static Union<T, Base> Test2<T>(Union<T, Base> val) {
             return val;
         }
 
-        static void Test(Action<object> act)
-        {
+        static void Test(Action<object> act) {
         }
 
-        static int TestUnion2(object obj)
-        {
+        static int TestUnion2(object obj) {
             Console.WriteLine(obj);
             return 1;
         }
 
-        static void TestUnion(Union<int, double> val)
-        {
+        static void TestUnion(Union<int, double> val) {
             val.Match(
                 x => Console.WriteLine("int!!"),
                 x => Console.WriteLine("double!!")
