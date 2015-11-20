@@ -12,8 +12,8 @@ namespace Utility {
     }
 
     public class Option<T> : Union<Some<T>, None> {
-        internal Option(T value) : base(new Some<T>(value)) { }
-        internal Option() : base(new None()) { }
+        public Option(T value) : base(new Some<T>(value)) { }
+        public Option() : base(new None()) { }
         
         public Option<RT> Apply<RT>(Func<T, RT> func) {
             return Match<Option<RT>>(

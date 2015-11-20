@@ -26,6 +26,7 @@ namespace Utility_Tests {
 
     class Program {
         static void Main(string[] args) {
+            Console.WriteLine(TimeSpan.FromSeconds(30).TotalMilliseconds);
             //PrintType(Option.New<object>());
             //PrintType(Option.New(""));
 
