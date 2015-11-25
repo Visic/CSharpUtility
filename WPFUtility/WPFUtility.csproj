@@ -44,9 +44,23 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Buttons\ButtonViewModel.cs" />
+    <Compile Include="Buttons\ButtonView\ButtonViewModel.cs" />
+    <Compile Include="Buttons\ButtonView\ButtonView.xaml.cs">
+      <DependentUpon>ButtonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Buttons\SelectableButtonView\SelectableButtonView.xaml.cs">
+      <DependentUpon>SelectableButtonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Buttons\ToggleButtonView\ToggleButtonView.xaml.cs">
+      <DependentUpon>ToggleButtonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Buttons\ToggleButtonView\ToggleButtonViewModel.cs" />
+    <Compile Include="Buttons\SelectableButtonView\SelectableButtonViewModel.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Buttons\IButtonViewModel.cs" />
+    <Compile Include="DataStructures\SingleSelectionCollection.cs" />
+    <Compile Include="DockPanelSplitter.cs" />
+    <Compile Include="ISelectableViewModel.cs" />
     <Compile Include="ViewModelBase\IViewModelBase.cs" />
     <Compile Include="MessageView\MessageView.xaml.cs">
       <DependentUpon>MessageView.xaml</DependentUpon>
@@ -63,13 +77,25 @@
     <Compile Include="HostWithDialogButtons\HostWithDialogButtonsView.xaml.cs">
       <DependentUpon>HostWithDialogButtonsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewResources\VMHostWindowView.xaml.cs">
+    <Compile Include="Windows\VMHostWindowView.xaml.cs">
       <DependentUpon>VMHostWindowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\VMHostWindowViewModel.cs" />
     <Compile Include="Windows\WindowGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Buttons\ButtonView\ButtonView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Buttons\SelectableButtonView\SelectableButtonView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Buttons\ToggleButtonView\ToggleButtonView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="HostWithDialogButtons\HostWithDialogButtonsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -78,14 +104,24 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViewResources\VMHostWindowView.xaml">
+    <Page Include="Windows\VMHostWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewResources\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ViewResources\VVMAssociations.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{fca2b723-2aba-4d92-829d-49340363dabd}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

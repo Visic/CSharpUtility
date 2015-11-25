@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="WPFUtility.ToggleButtonView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFUtility"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Button Content="{Binding Text}" 
+                Command="{Binding Command}" 
+                IsDefault="{Binding IsDefault}"
+                IsCancel="{Binding IsCancel}"
+                Background="{Binding IsSelected.Value, Converter={StaticResource ToggleButtonBackgroundColorConverter}}"
+                Foreground="{Binding IsSelected.Value, Converter={StaticResource ToggleButtonTextColorConverter}}"/>
+    </Grid>
+</UserControl>

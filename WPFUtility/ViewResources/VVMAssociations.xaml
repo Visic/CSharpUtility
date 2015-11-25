@@ -2,10 +2,22 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WPFUtility">
     <DataTemplate DataType="{x:Type local:HostWithDialogButtonsViewModel}">
-        <local:HostWithDialogButtonsView />
+        <local:HostWithDialogButtonsView/>
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type local:MessageViewModel}">
-        <local:MessageView />
+        <local:MessageView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:ButtonViewModel}">
+        <local:ButtonView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:SelectableButtonViewModel}">
+        <local:SelectableButtonView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:ToggleButtonViewModel}">
+        <local:ToggleButtonView/>
     </DataTemplate>
 </ResourceDictionary>

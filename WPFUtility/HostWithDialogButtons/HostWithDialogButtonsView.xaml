@@ -26,10 +26,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding Text}" 
-                                Command="{Binding Command}" 
-                                IsDefault="{Binding IsDefault}"
-                                IsCancel="{Binding IsCancel}"/>
+                        <ContentPresenter Content="{Binding}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

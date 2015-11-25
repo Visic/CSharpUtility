@@ -48,6 +48,7 @@
     <Compile Include="DataStructures\Union.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="Methods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UniqueFileNameGenerator.cs" />
   </ItemGroup>
