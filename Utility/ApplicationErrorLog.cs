@@ -66,8 +66,9 @@ namespace Utility {
                 }
             }
 
-            var fileName = Path.Combine(ExceptionLogFolderPath, "ExceptionLog.txt");
-            File.WriteAllText(UniqueFileNameGenerator.NextNumbered(fileName), content);
+            var currentLogs = Directory.EnumerateFiles(ExceptionLogFolderPath);
+            var fileName = UniqueNameGenerator.NextNumbered("ExceptionLog", currentLogs);
+            File.WriteAllText(Path.Combine(ExceptionLogFolderPath, fileName) + ".txt", content);
         }
 
         //recursive exception logging helper method

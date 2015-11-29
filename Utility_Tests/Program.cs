@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -26,7 +27,7 @@ namespace Utility_Tests {
 
     class Program {
         static void Main(string[] args) {
-            Console.WriteLine(TimeSpan.FromSeconds(30).TotalMilliseconds);
+            //Console.WriteLine(TimeSpan.FromSeconds(30).TotalMilliseconds);
             //PrintType(Option.New<object>());
             //PrintType(Option.New(""));
 
