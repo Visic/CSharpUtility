@@ -58,9 +58,8 @@ namespace WPFUtility {
             if(sourceProp.Value && !_updatingSelections) {
                 _updatingSelections = true;
                 foreach(var ele in _selectableViewModels) {
-                    ele.IsSelected.Value = false;
+                    if (ele.IsSelected != sourceProp) ele.IsSelected.Value = false;
                 }
-                sourceProp.Value = true;
                 _updatingSelections = false;
             }
         }

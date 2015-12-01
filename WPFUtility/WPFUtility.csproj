@@ -34,6 +34,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -56,6 +57,7 @@
     </Compile>
     <Compile Include="Buttons\ToggleButtonView\ToggleButtonViewModel.cs" />
     <Compile Include="Buttons\SelectableButtonView\SelectableButtonViewModel.cs" />
+    <Compile Include="Commands\ChainCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Buttons\IButtonViewModel.cs" />
     <Compile Include="DataStructures\SingleSelectionCollection.cs" />
