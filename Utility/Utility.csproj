@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ApplicationErrorLog.cs" />
     <Compile Include="ColoredConsole.cs" />
+    <Compile Include="DataStructures\CrossReferenceDictionary.cs" />
     <Compile Include="DataStructures\None.cs" />
     <Compile Include="DataStructures\Option.cs" />
     <Compile Include="DataStructures\Some.cs" />

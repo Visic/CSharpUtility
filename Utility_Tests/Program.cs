@@ -27,13 +27,8 @@ namespace Utility_Tests {
 
     class Program {
         static void Main(string[] args) {
-            //Console.WriteLine(TimeSpan.FromSeconds(30).TotalMilliseconds);
-            //PrintType(Option.New<object>());
-            //PrintType(Option.New(""));
-
-            //Option<object> o = null;
-            //Console.WriteLine(o is Some<object>);
-            //PrintType(o);
+            Console.WriteLine(Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.Desktop)));
+            Console.WriteLine(string.Join(", ", Path.GetInvalidFileNameChars()));
 
             Console.ReadKey();
         }
