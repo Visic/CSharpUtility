@@ -1,7 +1,7 @@
 ﻿using System.Windows.Input;
 
 namespace WPFUtility {
-    public class SelectableButtonViewModel : ButtonViewModel, ISelectableViewModel {
+    public class SelectableButtonViewModel : ButtonViewModel, ISelectableButtonViewModel {
         public SelectableButtonViewModel(string text, ICommand command) {
             Text = text;
 
