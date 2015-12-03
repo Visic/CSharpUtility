@@ -6,12 +6,10 @@
              xmlns:local="clr-namespace:WPFUtility"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Button Content="{Binding Text}" 
-                Command="{Binding Command}" 
-                IsDefault="{Binding IsDefault}"
-                IsCancel="{Binding IsCancel}"
-                Background="{Binding IsSelected.Value, Converter={StaticResource ToggleButtonBackgroundColorConverter}}"
-                Foreground="{Binding IsSelected.Value, Converter={StaticResource ToggleButtonTextColorConverter}}"/>
-    </Grid>
+    <Button Content="{Binding Text.Value}" 
+            Command="{Binding Command}" 
+            IsDefault="{Binding IsDefault}"
+            IsCancel="{Binding IsCancel}"
+            Background="{Binding IsSelected.Value, Converter={StaticResource ToggleButtonBackgroundColorConverter}}"
+            Foreground="{Binding IsSelected.Value, Converter={StaticResource ToggleButtonForegroundColorConverter}}"/>
 </UserControl>

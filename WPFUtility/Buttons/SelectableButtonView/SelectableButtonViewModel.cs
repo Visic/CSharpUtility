@@ -3,7 +3,7 @@
 namespace WPFUtility {
     public class SelectableButtonViewModel : ButtonViewModel, ISelectableButtonViewModel {
         public SelectableButtonViewModel(string text, ICommand command) {
-            Text = text;
+            Text.Value = text;
 
             bool _ignoreSelectedChanged = false;
             IsSelected = new NotifyingPropertyWithChangedAction<bool>(isSelected => {

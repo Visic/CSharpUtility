@@ -5,7 +5,7 @@ namespace WPFUtility {
         protected ButtonViewModel() { }
 
         public ButtonViewModel(string text, ICommand command, bool isCancel = false, bool isDefault = false) {
-            Text = text;
+            Text.Value = text;
             Command = command;
             IsCancel = IsCancel;
             IsDefault = IsDefault;
@@ -14,6 +14,6 @@ namespace WPFUtility {
         public ICommand Command { get; protected set; }
         public bool IsCancel { get; protected set; }
         public bool IsDefault { get; protected set; }
-        public string Text { get; protected set; }
+        public NotifyingProperty<string> Text { get; } = new NotifyingProperty<string>();
     }
 }

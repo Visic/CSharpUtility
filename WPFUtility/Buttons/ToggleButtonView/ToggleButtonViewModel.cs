@@ -8,7 +8,7 @@ using System.Windows.Input;
 namespace WPFUtility {
     public class ToggleButtonViewModel : ButtonViewModel, ISelectableButtonViewModel {
         public ToggleButtonViewModel(string text, ICommand command) {
-            Text = text;
+            Text.Value = text;
             Command = new RelayCommand(x => { IsSelected.Value = !IsSelected.Value; command.Execute(x); }, command.CanExecute);
         }
 

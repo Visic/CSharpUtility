@@ -49,6 +49,7 @@
     <Compile Include="Buttons\ButtonView\ButtonView.xaml.cs">
       <DependentUpon>ButtonView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Buttons\SelectableButtonView\ISelectableButtonViewModel.cs" />
     <Compile Include="Buttons\SelectableButtonView\SelectableButtonView.xaml.cs">
       <DependentUpon>SelectableButtonView.xaml</DependentUpon>
     </Compile>
