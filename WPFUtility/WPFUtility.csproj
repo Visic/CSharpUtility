@@ -63,6 +63,7 @@
     <Compile Include="Buttons\IButtonViewModel.cs" />
     <Compile Include="DataStructures\SingleSelectionCollection.cs" />
     <Compile Include="DockPanelSplitter.cs" />
+    <Compile Include="ExtendedTreeView.cs" />
     <Compile Include="ISelectableViewModel.cs" />
     <Compile Include="ViewModelBase\IViewModelBase.cs" />
     <Compile Include="MessageView\MessageView.xaml.cs">
