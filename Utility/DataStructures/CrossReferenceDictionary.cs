@@ -13,7 +13,7 @@ namespace Utility {
         Dictionary<int, T2> _t2Lookup = new Dictionary<int, T2>(); //t1 hash -> t2 val
 
         public CrossReferenceCollection() {
-            _pairs = _t1Lookup.Select(x => Tuple.Create(x.Value, _t2Lookup[x.Key]));
+            _pairs = _t1Lookup.Select(x => Tuple.Create(x.Value, _t2Lookup[x.Value.GetHashCode()]));
         }
         
         public CrossReferenceCollection(IEnumerable<Tuple<T1, T2>> items) : this() {
