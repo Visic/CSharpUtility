@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WPFUtility">
+    <ControlTemplate x:Key="ClosableButtonTemplate" TargetType="Button">
+        <Border BorderThickness="0" BorderBrush="Black"
+                Padding="5,0"
+                Background="{TemplateBinding Background}">
+            <StackPanel Orientation="Horizontal">
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button Style="{StaticResource SmallCloseButton}"/>                
+            </StackPanel>
+        </Border>
+    </ControlTemplate>
+</ResourceDictionary>

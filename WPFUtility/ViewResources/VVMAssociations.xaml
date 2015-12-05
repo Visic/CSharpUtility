@@ -20,4 +20,8 @@
     <DataTemplate DataType="{x:Type local:ToggleButtonViewModel}">
         <local:ToggleButtonView/>
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:SelectableCloseableButtonViewModel}">
+        <local:SelectableCloseableButtonView/>
+    </DataTemplate>
 </ResourceDictionary>

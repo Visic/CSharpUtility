@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WPFUtility {
     public class SingleSelectionCollection<T> : IEnumerable<T>, IDisposable, INotifyCollectionChanged
@@ -21,6 +18,10 @@ namespace WPFUtility {
             foreach(var ele in selectableViewModels) {
                 ele.IsSelected.PropertyChanged += OnSelectionChanged;
             }
+        }
+
+        public int IndexOf(T selectableObject) {
+            return _selectableViewModels.IndexOf(selectableObject);
         }
 
         public void Add(T selectableObject) {
