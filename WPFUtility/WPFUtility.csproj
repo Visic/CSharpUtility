@@ -80,12 +80,9 @@
       <DependentUpon>MessageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageView\MessageViewModel.cs" />
-    <Compile Include="MyProperties\ConditionalNotifyingProperty.cs" />
     <Compile Include="MyProperties\NotifyingProperty.cs" />
-    <Compile Include="MyProperties\NotifyingPropertyWithChangedAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MyProperties\ConditionalPropertyWithChangedAction.cs" />
-    <Compile Include="MyProperties\PropertyWithChangedAction.cs" />
+    <Compile Include="MyProperties\Property.cs" />
     <Compile Include="ViewModelBase\ViewModelBase.cs" />
     <Compile Include="HostWithDialogButtons\HostWithDialogButtonsViewModel.cs" />
     <Compile Include="HostWithDialogButtons\HostWithDialogButtonsView.xaml.cs">

@@ -1,10 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
-namespace WPFUtility
-{
-    public abstract class ViewModelBase : INotifyPropertyChanged, IViewModelBase
-    {
+namespace WPFUtility {
+    public abstract class ViewModelBase : INotifyPropertyChanged, IViewModelBase {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public virtual void Dispose() { }
 
         protected void OnPropertyChanged(string propName) {
             var copy = PropertyChanged;

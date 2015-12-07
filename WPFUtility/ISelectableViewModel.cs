@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WPFUtility {
-    public interface ISelectableViewModel {
+﻿namespace WPFUtility {
+    public interface ISelectableViewModel : IViewModelBase {
         NotifyingProperty<bool> IsSelected { get; }
     }
 }

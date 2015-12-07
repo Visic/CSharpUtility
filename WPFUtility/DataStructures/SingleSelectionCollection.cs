@@ -68,6 +68,7 @@ namespace WPFUtility {
         public void Dispose() {
             foreach(var ele in _selectableViewModels) {
                 ele.IsSelected.PropertyChanged -= OnSelectionChanged;
+                ele.Dispose();
             }
         }
     }

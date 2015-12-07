@@ -23,5 +23,12 @@ namespace Utility {
                 }
             }
         }
+
+        public static string Hash(string str) {
+            using(var hash = HashAlgorithm.Create()) {
+                var content = Encoding.ASCII.GetBytes(str);
+                return Encoding.ASCII.GetString(hash.ComputeHash(content));
+            }
+        }
     }
 }

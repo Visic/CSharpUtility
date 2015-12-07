@@ -6,7 +6,7 @@ namespace WPFUtility {
             Text.Value = text;
 
             bool _ignoreSelectedChanged = false;
-            IsSelected = new NotifyingPropertyWithChangedAction<bool>(isSelected => {
+            IsSelected = new NotifyingProperty<bool>(isSelected => {
                 if (_ignoreSelectedChanged || !isSelected) return;
                 Command.Execute(null);
             });
