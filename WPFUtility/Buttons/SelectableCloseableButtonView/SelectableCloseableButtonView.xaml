@@ -12,18 +12,5 @@
             IsDefault="{Binding IsDefault}"
             IsCancel="{Binding IsCancel}"
             Template="{StaticResource ClosableButtonTemplate}"
-            Background="{Binding IsSelected.Value, Converter={StaticResource SelectableButtonBackgroundColorConverter}}">
-        <Button.Style>
-            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding IsDirty.Value}" Value="True">
-                        <Setter Property="Foreground" Value="#CC0000"/>
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding IsDirty.Value}" Value="False">
-                        <Setter Property="Foreground" Value="{Binding IsSelected.Value, Converter={StaticResource SelectableButtonForegroundColorConverter}}"/>
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
-        </Button.Style>
-    </Button>
+            Background="{Binding IsSelected.Value, Converter={StaticResource SelectableButtonBackgroundColorConverter}}"/>
 </UserControl>
