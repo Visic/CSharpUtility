@@ -14,7 +14,25 @@ namespace Utility {
     public class Option<T> : Union<Some<T>, None> {
         public Option(T value) : base(new Some<T>(value)) { }
         public Option() : base(new None()) { }
-        
+
+        public T Value {
+            get {
+                return Match(x => x, x => { throw new Exception("Value is not defined on None"); });
+            }
+        }
+
+        public bool IsSome {
+            get {
+                return Match<bool>(x => true, x => false);
+            }
+        }
+
+        public bool IsNone {
+            get {
+                return !IsSome;
+            }
+        }
+
         public Option<RT> Apply<RT>(Func<T, RT> func) {
             return Match<Option<RT>>(
                 x => func(x),

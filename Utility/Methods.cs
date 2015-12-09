@@ -30,5 +30,14 @@ namespace Utility {
                 return Encoding.ASCII.GetString(hash.ComputeHash(content));
             }
         }
+
+        public static IEnumerable<T> CreateSequence<T>(Func<Option<T>, Option<T>> elementGenerator) {
+            var lastValue = new Option<T>();
+            while(true) {
+                lastValue = elementGenerator(lastValue);
+                if (lastValue.IsNone) yield break;
+                yield return lastValue.Value;
+            }
+        }
     }
 }
