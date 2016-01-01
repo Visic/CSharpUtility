@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Utility {
     public static class Methods {
@@ -38,6 +36,17 @@ namespace Utility {
                 if (lastValue.IsNone) yield break;
                 yield return lastValue.Value;
             }
+        }
+
+        public static Dictionary<char, ulong> CountCharOccurrences(string txt) {
+            return CountCharOccurrences(txt, new Dictionary<char, ulong>());
+        }
+
+        public static T CountCharOccurrences<T>(string txt, T result) where T : IDictionary<char, ulong> {
+            foreach(var ele in txt) {
+                result.AddOrUpdate(ele, 1UL, v => v + 1);
+            }
+            return result;
         }
     }
 }

@@ -1,0 +1,111 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections;
+
+namespace Utility {
+    public class OrderedList<T> : IReadOnlyList<T> where T : IComparable<T> {
+        List<T> _list = new List<T>();
+        List<int> _sortedIndicies = new List<int>();
+        int _unsortedIndex, _highestAccessedIndex = -1;
+
+        public int Count { get { return _list.Count; } }
+
+        public T this[int index]
+        {
+            get
+            {
+                SortIfNecessary(index);
+                return _list[index];
+            }
+        }
+
+        public void Add(T item) {
+            _list.Add(item);
+            if(_sortedIndicies.Count > 0 && _list[_sortedIndicies[0] - 1].CompareTo(item) < 0) {
+                _highestAccessedIndex = -1;
+            }
+        }
+
+        public void Clear() {
+            _list.Clear();
+            _sortedIndicies.Clear();
+            _unsortedIndex = 0;
+            _highestAccessedIndex = -1;
+        }
+
+        public bool Contains(T item) {
+            return _list.Contains(item);
+        }
+
+        public bool Remove(T item) {
+            return _list.Remove(item); //TODO:: remove from the unsorted elements first
+        }
+
+        //Sort _list up to the specified index
+        private void SortIfNecessary(int index) {
+            if(_highestAccessedIndex >= index) return;
+
+            //Sort the unsorted part
+            if(_unsortedIndex < Count) {
+                _list.Sort(_unsortedIndex, Count - _unsortedIndex, null);
+                if(_unsortedIndex > 0) _sortedIndicies.Add(_unsortedIndex); //otherwise this is the initial sort
+                _unsortedIndex = Count;
+            }
+
+            if(_sortedIndicies.Count == 0) return; //nothing to merge
+
+            //Merge blocks until we reach [index]
+            for(int i = 0; i < _sortedIndicies.Count; ++i) {
+                var mergeCount = (i == _sortedIndicies.Count - 1 ? Count : _sortedIndicies[i + 1]) - _sortedIndicies[i];
+                if(mergeCount - 1 > index) mergeCount = index + 1; //limit amount to [index]
+                var offsetMergeTo = mergeCount + _sortedIndicies[i];
+
+                var y = 0; //y == index into sorted part of list
+                for(int z = _sortedIndicies[i]; z < offsetMergeTo;) { //for all elements in the sorted block, less than mergeUpTo
+                    y = FindIndex_Rec(_list[z], y, _sortedIndicies[0] - 1) + y; //find where it belongs as quickly as possible
+                    var chunk = z + 1 < offsetMergeTo ? FindIndex_Rec(_list[y], z + 1, offsetMergeTo - 1) + 1 : 1;
+                    _list.InsertRange(y, _list.GetRange(z, chunk));
+                    _list.RemoveRange(z += chunk, chunk);
+                    _sortedIndicies[i] += chunk;
+                    y += chunk + 1;
+
+                    if (y >= z) z = _sortedIndicies[i] = offsetMergeTo; //all elements in this sorted section have been handled
+                }
+
+                if(_sortedIndicies[i] == Count || (i < _sortedIndicies.Count - 1 && _sortedIndicies[i] == _sortedIndicies[i + 1])) {
+                    _sortedIndicies.RemoveAt(i);
+                }
+            }
+
+            _highestAccessedIndex = index;
+        }
+
+        //returns an index (relative to [startIndex]) where [ele] belongs
+        private int FindIndex_Rec(T ele, int startIndex, int endIndex) {
+            if(ele.CompareTo(_list[startIndex]) < 0) return 0;
+            var endCompare = ele.CompareTo(_list[endIndex]);
+            if(endCompare > 0) return endIndex + 1 - startIndex;
+            if(endCompare == 0) return endIndex - startIndex + 1;
+
+            var half = (endIndex - startIndex) / 2;
+            if(half == 0) half = 1;
+            return FindIndex_Rec(ele, startIndex, endIndex - half) + FindIndex_Rec(ele, endIndex - half + 1, endIndex);
+        }
+
+        #region IEnumerable
+        public IEnumerator<T> GetEnumerator() {
+            return OrderedEnumerable().GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return OrderedEnumerable().GetEnumerator();
+        }
+
+        private IEnumerable<T> OrderedEnumerable() {
+            for(int i = 0; i < Count; ++i) {
+                yield return this[i];
+            }
+        }
+        #endregion
+    }
+}

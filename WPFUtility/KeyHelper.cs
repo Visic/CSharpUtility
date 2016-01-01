@@ -1,130 +1,52 @@
-﻿using System.Windows.Input;
+﻿using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Windows.Input;
 using Utility;
 
 namespace WPFUtility {
     public static class KeyHelper {
-        public static Option<char> GetCharForKey(Key key) {
-            switch(key) {
-                    case Key.NumPad0:
-                    case Key.D0:
-                        return '0';
-                    case Key.NumPad1:
-                    case Key.D1:
-                        return '1';
-                    case Key.NumPad2:
-                    case Key.D2:
-                        return '2';
-                    case Key.NumPad3:
-                    case Key.D3:
-                        return '3';
-                    case Key.NumPad4:
-                    case Key.D4:
-                        return '4';
-                    case Key.NumPad5:
-                    case Key.D5:
-                        return '5';
-                    case Key.NumPad6:
-                    case Key.D6:
-                        return '6';
-                    case Key.NumPad7:
-                    case Key.D7:
-                        return '7';
-                    case Key.NumPad8:
-                    case Key.D8:
-                        return '8';
-                    case Key.NumPad9:
-                    case Key.D9:
-                        return '9';
-                    case Key.A:
-                        return 'a';
-                    case Key.B:
-                        return 'b';
-                    case Key.C:
-                        return 'c';
-                    case Key.D:
-                        return 'd';
-                    case Key.E:
-                        return 'e';
-                    case Key.F:
-                        return 'f';
-                    case Key.G:
-                        return 'g';
-                    case Key.H:
-                        return 'h';
-                    case Key.I:
-                        return 'i';
-                    case Key.J:
-                        return 'j';
-                    case Key.K:
-                        return 'k';
-                    case Key.L:
-                        return 'l';
-                    case Key.M:
-                        return 'm';
-                    case Key.N:
-                        return 'n';
-                    case Key.O:
-                        return 'o';
-                    case Key.P:
-                        return 'p';
-                    case Key.Q:
-                        return 'q';
-                    case Key.R:
-                        return 'r';
-                    case Key.S:
-                        return 's';
-                    case Key.T:
-                        return 't';
-                    case Key.U:
-                        return 'u';
-                    case Key.V:
-                        return 'v';
-                    case Key.W:
-                        return 'w';
-                    case Key.X:
-                        return 'x';
-                    case Key.Y:
-                        return 'y';
-                    case Key.Z:
-                        return 'z';
-                    case Key.Multiply:
-                        return '*';
-                    case Key.Add:
-                        return '+';
-                    case Key.Separator:
-                        return '/';
-                    case Key.Subtract:
-                        return '-';
-                    case Key.Decimal:
-                        return '.';
-                    case Key.Divide:
-                        return '/';
-                    case Key.OemSemicolon:
-                        return ';';
-                    case Key.OemPlus:
-                        return '+';
-                    case Key.OemComma:
-                        return ',';
-                    case Key.OemMinus:
-                        return '-';
-                    case Key.OemPeriod:
-                        return '.';
-                    case Key.OemQuestion:
-                        return '?';
-                    case Key.OemTilde:
-                        return '~';
-                    case Key.OemOpenBrackets:
-                        return '[';
-                    case Key.OemPipe:
-                        return '|';
-                    case Key.OemCloseBrackets:
-                        return ']';
-                    case Key.OemQuotes:
-                        return '"';
-                    case Key.OemBackslash:
-                        return '\\';
-                }
-            return new Option<char>();
+        #region http://stackoverflow.com/questions/5825820/how-to-capture-the-character-on-different-locale-keyboards-in-wpf-c
+        public enum MapType : uint {
+            MAPVK_VK_TO_VSC = 0x0,
+            MAPVK_VSC_TO_VK = 0x1,
+            MAPVK_VK_TO_CHAR = 0x2,
+            MAPVK_VSC_TO_VK_EX = 0x3,
         }
+
+        [DllImport("user32.dll")]
+        public static extern int ToUnicode(
+            uint wVirtKey,
+            uint wScanCode,
+            byte[] lpKeyState,
+            [Out, MarshalAs(UnmanagedType.LPWStr, SizeParamIndex = 4)]
+            StringBuilder pwszBuff,
+            int cchBuff,
+            uint wFlags);
+
+        [DllImport("user32.dll")]
+        public static extern bool GetKeyboardState(byte[] lpKeyState);
+
+        [DllImport("user32.dll")]
+        public static extern uint MapVirtualKey(uint uCode, MapType uMapType);
+
+        public static Option<char> GetCharForKey(Key key) {
+            int virtualKey = KeyInterop.VirtualKeyFromKey(key);
+            byte[] keyboardState = new byte[256];
+            GetKeyboardState(keyboardState);
+
+            uint scanCode = MapVirtualKey((uint)virtualKey, MapType.MAPVK_VK_TO_VSC);
+            StringBuilder stringBuilder = new StringBuilder(2);
+
+            int result = ToUnicode((uint)virtualKey, scanCode, keyboardState, stringBuilder, stringBuilder.Capacity, 0);
+            switch(result) {
+                case -1:
+                case 0:
+                    return new Option<char>();
+                default:
+                    return Option.New(stringBuilder[0]);
+            }
+        }
+        #endregion
     }
 }

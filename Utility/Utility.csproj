@@ -42,11 +42,15 @@
   <ItemGroup>
     <Compile Include="ApplicationErrorLog.cs" />
     <Compile Include="ColoredConsole.cs" />
+    <Compile Include="DataStructures\Average.cs" />
+    <Compile Include="DataStructures\Cached.cs" />
     <Compile Include="DataStructures\CrossReferenceDictionary.cs" />
     <Compile Include="DataStructures\None.cs" />
     <Compile Include="DataStructures\Option.cs" />
+    <Compile Include="DataStructures\OrderedList.cs" />
     <Compile Include="DataStructures\Some.cs" />
     <Compile Include="DataStructures\Union.cs" />
+    <Compile Include="MiscExtensions.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Methods.cs" />

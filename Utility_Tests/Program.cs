@@ -27,6 +27,123 @@ namespace Utility_Tests {
 
     class Program {
         static void Main(string[] args) {
+            Random rnd = new Random();
+            var limit = 1000000;
+            var rndLimit = limit;// 100;
+
+            Console.WriteLine("Add all first then verify---");
+            for(int z = 10; z <= limit; z *= 10) {
+                var sortedList = new List<int>();
+                var oList = new OrderedList<int>();
+                SW.Restart("");
+                for(int i = 0; i < z; ++i) {
+                    var n = rnd.Next(rndLimit);
+                    oList.Add(n);
+                    sortedList.Add(n);
+                }
+                sortedList.Sort();
+                for(int i = 0; i < oList.Count; ++i) {
+                    if(oList[i] != sortedList[i]) {
+                        Console.WriteLine("Failed");
+                        return;
+                    }
+                }
+                SW.StopAndPrint("", z.ToString());
+            }
+
+            Console.WriteLine("Add then access---");
+            for(int z = 10; z <= limit; z *= 10) {
+                //var sortedList = new List<int>();
+                var oList = new OrderedList<int>();
+                SW.Restart("");
+                for(int i = 0; i < z; ++i) {
+                    var n = rnd.Next(rndLimit);
+                    oList.Add(n);
+                    var temp = oList[i];
+                    //sortedList.Add(n);
+                    //sortedList.Sort();
+                    //if(oList[i] != sortedList[i]) {
+                    //    Console.WriteLine("Failed");
+                    //    return;
+                    //}
+                }
+                SW.StopAndPrint("", z.ToString());
+            }
+
+            Console.WriteLine("Access after every 100 adds---");
+            for(int z = 10; z <= limit; z *= 10) {
+                //var sortedList = new List<int>();
+                var oList = new OrderedList<int>();
+                SW.Restart("");
+                for(int i = 0; i < z; ++i) {
+                    var n = rnd.Next(rndLimit);
+                    oList.Add(n);
+                    //sortedList.Add(n);
+                    //sortedList.Sort();
+                    if(i % 100 == 0) {
+                        var temp = oList[i];
+                        //if(oList[i] != sortedList[i]) {
+                        //    Console.WriteLine("Failed");
+                        //    return;
+                        //}
+                    }
+                }
+                SW.StopAndPrint("", z.ToString());
+            }
+
+            Console.WriteLine("Access after every 1000 adds---");
+            for(int z = 10; z <= limit; z *= 10) {
+                //var sortedList = new List<int>();
+                var oList = new OrderedList<int>();
+                SW.Restart("");
+                for(int i = 0; i < z; ++i) {
+                    var n = rnd.Next(rndLimit);
+                    oList.Add(n);
+                    //sortedList.Add(n);
+                    //sortedList.Sort();
+                    if(i % 1000 == 0) {
+                        var temp = oList[i];
+                        //if(oList[i] != sortedList[i]) {
+                        //    Console.WriteLine("Failed");
+                        //    return;
+                        //}
+                    }
+                }
+                SW.StopAndPrint("", z.ToString());
+            }
+
+            Console.WriteLine("Just add---");
+            for(int z = 10; z <= limit; z *= 10) {
+                var oList = new OrderedList<int>();
+                SW.Restart("");
+                for(int i = 0; i < z; ++i) {
+                    oList.Add(rnd.Next(rndLimit));
+                }
+                SW.StopAndPrint("", z.ToString());
+            }
+
+            Console.WriteLine("Random access---");
+            for(int z = 10; z <= limit; z *= 10) {
+                var sortedList = new List<int>();
+                var oList = new OrderedList<int>();
+                for(int i = 0; i < z; ++i) {
+                    var n = rnd.Next(rndLimit);
+                    oList.Add(n);
+                    sortedList.Add(n);
+                }
+                sortedList.Sort();
+                SW.Restart("");
+                for(int i = 0; i < z / 100; ++i) {
+                    var index = rnd.Next(oList.Count - 1);
+                    if(oList[index] != sortedList[index]) {
+                        Console.WriteLine("Failed");
+                        return;
+                    }
+                }
+                SW.StopAndPrint("", z.ToString());
+            }
+
+            Console.WriteLine("Done!");
             Console.ReadKey();
         }
 

@@ -27,11 +27,7 @@ namespace Utility {
             }
         }
 
-        public bool IsNone {
-            get {
-                return !IsSome;
-            }
-        }
+        public bool IsNone { get { return !IsSome; } }
 
         public Option<RT> Apply<RT>(Func<T, RT> func) {
             return Match<Option<RT>>(
