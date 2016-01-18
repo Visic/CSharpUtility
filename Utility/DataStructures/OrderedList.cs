@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Collections;
 
+//TODO:: Try to remove the need for "insert" entirely (the inserting into a list is a linear run time, thats why this is so slow still)
 namespace Utility {
-    public class OrderedList<T> : IReadOnlyList<T> where T : IComparable<T> {
+    public class OrderedList<T> : IReadOnlyList<T> where T : IComparable {
         List<T> _list = new List<T>();
         List<int> _sortedIndicies = new List<int>();
         int _unsortedIndex, _highestAccessedIndex = -1;
@@ -39,6 +40,21 @@ namespace Utility {
 
         public bool Remove(T item) {
             return _list.Remove(item); //TODO:: remove from the unsorted elements first
+        }
+
+        public int FindInsertionIndex(IComparable item) {
+            SortIfNecessary(FindIndex_Rec(item, 0, (_sortedIndicies.Count == 0 ? Count : _sortedIndicies[0]) - 1));
+            return FindIndex_Rec(item, 0, (_sortedIndicies.Count == 0 ? Count : _sortedIndicies[0]) - 1);
+        }
+
+        public List<T> GetRange(int index, int count) {
+            SortIfNecessary(index + count);
+            return _list.GetRange(index, count);
+        }
+
+        public void RemoveRange(int index, int count) {
+            SortIfNecessary(index + count);
+            _list.RemoveRange(index, count);
         }
 
         //Sort _list up to the specified index
@@ -81,11 +97,9 @@ namespace Utility {
         }
 
         //returns an index (relative to [startIndex]) where [ele] belongs
-        private int FindIndex_Rec(T ele, int startIndex, int endIndex) {
-            if(ele.CompareTo(_list[startIndex]) < 0) return 0;
-            var endCompare = ele.CompareTo(_list[endIndex]);
-            if(endCompare > 0) return endIndex + 1 - startIndex;
-            if(endCompare == 0) return endIndex - startIndex + 1;
+        private int FindIndex_Rec(IComparable ele, int startIndex, int endIndex) {
+            if(_list[startIndex].CompareTo(ele) > 0) return 0;
+            if(_list[endIndex].CompareTo(ele) <= 0) return endIndex + 1 - startIndex;
 
             var half = (endIndex - startIndex) / 2;
             if(half == 0) half = 1;

@@ -33,7 +33,7 @@ namespace Utility {
             var lastValue = new Option<T>();
             while(true) {
                 lastValue = elementGenerator(lastValue);
-                if (lastValue.IsNone) yield break;
+                if(lastValue.IsNone) yield break;
                 yield return lastValue.Value;
             }
         }

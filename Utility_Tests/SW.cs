@@ -12,14 +12,14 @@ namespace Utility_Tests {
         }
 
         public static void RestartAndPrint(string name, string msg = "", long threshholdInMS = 0) {
-            var ms = _stopwatches[name].ElapsedMilliseconds;
+            var ms = _stopwatches[name].Elapsed.TotalMilliseconds;
             if(ms >= threshholdInMS) Console.WriteLine("{0} -- Elapsed {1}ms", msg, ms);
             _stopwatches[name].Restart();
         }
 
         public static void StopAndPrint(string name, string msg = "", long threshholdInMS = 0) {
             _stopwatches[name].Stop();
-            var ms = _stopwatches[name].ElapsedMilliseconds;
+            var ms = _stopwatches[name].Elapsed.TotalMilliseconds;
             if(ms >= threshholdInMS) Console.WriteLine("{0} -- Elapsed {1}ms", msg, ms);
         }
 
