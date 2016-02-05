@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Utility_Tests {
+namespace Utility {
     public static class SW {
         static Dictionary<string, Stopwatch> _stopwatches = new Dictionary<string, Stopwatch>();
 

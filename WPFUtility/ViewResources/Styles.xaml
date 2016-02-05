@@ -14,7 +14,20 @@
         </Setter>
     </Style>
 
-    <Style x:Key="SmallCloseButton" TargetType="Button">
+    <Style x:Key="CloseButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Command" Value="{Binding CloseCommand}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid Background="{TemplateBinding Background}">
+                        <Image Source="{StaticResource X}" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="True"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SmallCloseButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="Margin" Value="5,0,0,0"/>
         <Setter Property="Height" Value="12"/>
         <Setter Property="Width" Value="12"/>

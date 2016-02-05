@@ -10,7 +10,7 @@ namespace WPFUtility {
             IsCancel = IsCancel;
             IsDefault = IsDefault;
         }
-
+        
         public ICommand Command { get; protected set; }
         public bool IsCancel { get; protected set; }
         public bool IsDefault { get; protected set; }

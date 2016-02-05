@@ -48,5 +48,16 @@ namespace Utility {
             }
             return result;
         }
+
+        public static void Order<T>(ref T v1, ref T v2) where T : IComparable {
+            if (v1.CompareTo(v2) <= 0) return;
+            Swap(ref v1, ref v2);
+        }
+
+        public static void Swap<T>(ref T v1, ref T v2) {
+            var swap = v1;
+            v1 = v2;
+            v2 = swap;
+        }
     }
 }

@@ -24,4 +24,8 @@
     <DataTemplate DataType="{x:Type local:SelectableCloseableButtonViewModel}">
         <local:SelectableCloseableButtonView/>
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:SelectableCloseableButtonWithContextMenuViewModel}">
+        <local:SelectableCloseableButtonWithContextMenuView/>
+    </DataTemplate>
 </ResourceDictionary>

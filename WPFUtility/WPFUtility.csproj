@@ -53,6 +53,10 @@
     <Compile Include="Buttons\SelectableButtonView\SelectableButtonView.xaml.cs">
       <DependentUpon>SelectableButtonView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Buttons\SelectableCloseableButtonWithContextMenuView\SelectableCloseableButtonWithContextMenuView.xaml.cs">
+      <DependentUpon>SelectableCloseableButtonWithContextMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Buttons\SelectableCloseableButtonWithContextMenuView\SelectableCloseableButtonWithContextMenuViewModel.cs" />
     <Compile Include="Buttons\SelectableCloseableButtonView\SelectableCloseableButtonView.xaml.cs">
       <DependentUpon>SelectableCloseableButtonView.xaml</DependentUpon>
     </Compile>
@@ -65,6 +69,7 @@
     <Compile Include="Commands\ChainCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Buttons\IButtonViewModel.cs" />
+    <Compile Include="DataStructures\CommandWithText.cs" />
     <Compile Include="DataStructures\SingleSelectionCollection.cs" />
     <Compile Include="DockPanelSplitter.cs" />
     <Compile Include="ExtendedTreeView.cs" />
@@ -100,6 +105,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Buttons\SelectableButtonView\SelectableButtonView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Buttons\SelectableCloseableButtonWithContextMenuView\SelectableCloseableButtonWithContextMenuView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
