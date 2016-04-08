@@ -21,5 +21,35 @@ namespace Utility
         public static IEnumerable<string> AppendEach(this IEnumerable<string> src, string str) {
             return src.Select(x => x + str);
         }
+
+        public static T MinBy<T>(this IEnumerable<T> src, Func<T, int> getLength) {
+            return src.OrderBy(getLength).First();
+        }
+
+        public static T MaxBy<T>(this IEnumerable<T> src, Func<T, int> getLength) {
+            return src.OrderByDescending(getLength).First();
+        }
+
+        public static IEnumerable<string> Prepend(this IEnumerable<string> src, string prefix) {
+            return src.Select(x => prefix + x);
+        }
+
+        public static IEnumerable<string> Append(this IEnumerable<string> src, string suffix) {
+            return src.Select(x => x + suffix);
+        }
+
+        public static IEnumerable<IReadOnlyList<T>> Split<T>(this IEnumerable<T> src, Func<T, bool> predicate) {
+            var enumerator = src.GetEnumerator();
+            var curResult = new List<T>();
+            while (enumerator.MoveNext()) {
+                if (predicate(enumerator.Current)) {
+                    yield return curResult;
+                    curResult.Clear();
+                } else {
+                    curResult.Add(enumerator.Current);
+                }
+            }
+            yield return curResult;
+        }
     }
 }

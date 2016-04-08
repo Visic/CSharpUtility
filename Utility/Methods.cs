@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 
 namespace Utility {
     public static class Methods {
@@ -58,6 +60,43 @@ namespace Utility {
             var swap = v1;
             v1 = v2;
             v2 = swap;
+        }
+
+        public static void For(int i, Action<int> work) {
+            for(int z = 0; z < i; ++z) {
+                work(z);
+            }
+        }
+
+        public static void For(int i, Action work) {
+            for(int z = 0; z < i; ++z) {
+                work();
+            }
+        }
+
+        public static void For<T>(IEnumerable<T> enumerable, Action<T> work) {
+            For(enumerable, (i, ele) => work(ele));
+        }
+
+        public static void For<T>(IEnumerable<T> enumerable, Action<int, T> work) {
+            var arr = enumerable.ToArray();
+            for(int i = 0; i < arr.Length; ++i) {
+                work(i, arr[i]);
+            }
+        }
+
+        /// <summary>   Performs the [updater] action until [condition] is true or [timeout] has elapsed </summary>
+        /// <returns>   false if the timeout occurred, true otherwise </returns>
+        public static bool DoUntilConditionIsTrueOrTimesOut(Func<bool> condition, Action updater, TimeSpan timeout, int pollInterval_ms = 100) {
+            var timedout = false;
+            var start = DateTime.UtcNow;
+            do {
+                updater();
+                timedout = TimeSpan.Compare(DateTime.UtcNow.Subtract(start), timeout) > -1;
+                Thread.Sleep(pollInterval_ms);
+            } while (!condition() && !timedout);
+
+            return !timedout;
         }
     }
 }

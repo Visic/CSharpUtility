@@ -39,7 +39,16 @@ namespace Utility {
         }
 
         public bool Remove(T item) {
-            return _list.Remove(item); //TODO:: remove from the unsorted elements first
+            var index = _list.LastIndexOf(item);
+            if (index < 0) return false;
+
+            if (index <= _highestAccessedIndex) --_highestAccessedIndex;
+            if (index <= _unsortedIndex) --_unsortedIndex;
+            Methods.For(_sortedIndicies, (i, x) => {
+                if (index <= x) _sortedIndicies[i] = x - 1;
+            });
+            _list.RemoveAt(index);
+            return true;
         }
 
         public int FindInsertionIndex(IComparable item) {
@@ -53,8 +62,15 @@ namespace Utility {
         }
 
         public void RemoveRange(int index, int count) {
-            SortIfNecessary(index + count);
+            var offsetIndex = index + count;
+            SortIfNecessary(offsetIndex);
             _list.RemoveRange(index, count);
+
+            if (offsetIndex <= _highestAccessedIndex) _highestAccessedIndex -= offsetIndex;
+            if (offsetIndex <= _unsortedIndex) _unsortedIndex -= offsetIndex;
+            Methods.For(_sortedIndicies, (i, x) => {
+                if (offsetIndex <= x) _sortedIndicies[i] = x - offsetIndex;
+            });
         }
 
         //Sort _list up to the specified index
@@ -68,7 +84,10 @@ namespace Utility {
                 _unsortedIndex = Count;
             }
 
-            if(_sortedIndicies.Count == 0) return; //nothing to merge
+            if (_sortedIndicies.Count == 0) {
+                if (index > _highestAccessedIndex) _highestAccessedIndex = index;
+                return; //nothing to merge
+            }
 
             //Merge blocks until we reach [index]
             for(int i = 0; i < _sortedIndicies.Count; ++i) {

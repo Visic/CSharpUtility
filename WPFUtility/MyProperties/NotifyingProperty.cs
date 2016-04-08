@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using Utility;
 
 namespace WPFUtility {
     public class NotifyingProperty<T> : Property<T>, INotifyPropertyChanged {

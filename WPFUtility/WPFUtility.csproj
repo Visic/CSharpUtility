@@ -75,11 +75,13 @@
     <Compile Include="ExtendedTreeView.cs" />
     <Compile Include="ISelectableViewModel.cs" />
     <Compile Include="KeyHelper.cs" />
+    <Compile Include="PathBorder.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utility\MiscExtensions.cs" />
     <Compile Include="ViewModelBase\IViewModelBase.cs" />
     <Compile Include="MessageView\MessageView.xaml.cs">
       <DependentUpon>MessageView.xaml</DependentUpon>
@@ -87,7 +89,6 @@
     <Compile Include="MessageView\MessageViewModel.cs" />
     <Compile Include="MyProperties\NotifyingProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MyProperties\Property.cs" />
     <Compile Include="ViewModelBase\ViewModelBase.cs" />
     <Compile Include="HostWithDialogButtons\HostWithDialogButtonsViewModel.cs" />
     <Compile Include="HostWithDialogButtons\HostWithDialogButtonsView.xaml.cs">
