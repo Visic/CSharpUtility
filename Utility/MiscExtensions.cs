@@ -28,6 +28,16 @@ namespace Utility {
             return result;
         }
 
+        public static List<T> Add_Ex<T>(this List<T> src, params T[] vals) {
+            src.AddRange(vals);
+            return src;
+        }
+
+        public static List<T> Insert_Ex<T>(this List<T> src, int index, params T[] vals) {
+            src.InsertRange(index, vals);
+            return src;
+        }
+
         public static string Reverse(this string src) {
             return new string(src.ToCharArray().Reverse());
         }

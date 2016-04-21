@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\InfiniteDecimalApproximation.cs" />
+    <Compile Include="Algorithms\TreePrinter.cs" />
     <Compile Include="ApplicationErrorLog.cs" />
     <Compile Include="ColoredConsole.cs" />
     <Compile Include="DataStructures\Average.cs" />
@@ -50,8 +51,8 @@
     <Compile Include="DataStructures\Option.cs" />
     <Compile Include="DataStructures\OrderedList.cs" />
     <Compile Include="DataStructures\Property.cs" />
+    <Compile Include="DataStructures\Reference.cs" />
     <Compile Include="DataStructures\RollingAverage.cs" />
-    <Compile Include="DataStructures\Some.cs" />
     <Compile Include="DataStructures\Union.cs" />
     <Compile Include="MiscExtensions.cs" />
     <Compile Include="EnumerableExtensions.cs" />

@@ -11,8 +11,8 @@ namespace Utility {
         }
     }
 
-    public class Option<T> : Union<Some<T>, None> {
-        public Option(T value) : base(new Some<T>(value)) { }
+    public class Option<T> : Union<T, None> {
+        public Option(T value) : base(value) { }
         public Option() : base(new None()) { }
 
         public T Value {
@@ -50,16 +50,12 @@ namespace Utility {
             );
         }
 
-        public static implicit operator Option<T>(Some<T> someT) {
+        public static implicit operator Option<T>(T someT) {
             return new Option<T>(someT);
         }
 
         public static implicit operator Option<T>(None none) {
             return new Option<T>();
-        }
-
-        public static implicit operator Option<T>(T val) {
-            return new Option<T>(val);
         }
     }
 }

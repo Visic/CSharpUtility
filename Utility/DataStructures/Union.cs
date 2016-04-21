@@ -2,8 +2,8 @@
 
 namespace Utility {
     public class Union<T1, T2> {
-        Some<T1>? _type1Value;
-        Some<T2>? _type2Value;
+        Reference<T1> _type1Value;
+        Reference<T2> _type2Value;
 
         protected Union() { }
         public Union(T1 val) { _type1Value = val; }
