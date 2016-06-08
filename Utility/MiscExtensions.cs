@@ -49,5 +49,10 @@ namespace Utility {
         public static bool IsOdd(this int src) {
             return (src & 1) == 1;
         }
+
+        public static string RemoveCount(this string str, int count, bool fromEnd) {
+            if((str?.Length ?? 0) < count) return "";
+            return str.Remove(fromEnd ? str.Length - count : 0, count);
+        }
     }
 }

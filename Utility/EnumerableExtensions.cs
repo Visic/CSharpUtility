@@ -44,7 +44,7 @@ namespace Utility
             while (enumerator.MoveNext()) {
                 if (predicate(enumerator.Current)) {
                     yield return curResult;
-                    curResult.Clear();
+                    curResult = new List<T>();
                 } else {
                     curResult.Add(enumerator.Current);
                 }

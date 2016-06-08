@@ -8,6 +8,11 @@ using System.Threading;
 
 namespace Utility {
     public static class Methods {
+        public static bool IsBetween_Inclusive(int left, int right, int value) {
+            if(left > right) return value <= left && value >= right;
+            return value >= left && value <= right;
+        }
+
         public static bool IsApproximately(int left, int right, int tolerance) {
             return Math.Abs(left - right) < tolerance;
         }
